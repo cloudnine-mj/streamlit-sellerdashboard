@@ -2386,15 +2386,15 @@ elif st.session_state.page == 'Pro':
 
 
         def generate_title(prompt):
-            # response = client.chat.completions.create(
-            response = client.responses.create(
-                model='gpt-4.1-mini',
+            response = client.chat.completions.create(
+            #response = client.responses.create(
+                model='gpt-4.1',
                 messages=[
                     {'role': 'system', 'content': '너는 쇼핑 라이브 방송의 제목을 만들어주는 카피라이팅 전문가야. 아래의 제약조건 및 입력문을 토대로 최고의 라이브 방송 제목을 만들어줘.'},
                     {'role': 'user', 'content': prompt}
                 ],
                 temperature=0.8,
-                # max_tokens=500
+                max_tokens=500
             )
             return response.choices[0].message.content.strip()
         if st.button('🚀 제목 추천 받기'):
