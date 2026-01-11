@@ -2399,7 +2399,7 @@ elif st.session_state.page == 'Pro':
         #     return response.choices[0].message.content.strip()
         def generate_title(prompt):
             response = client.responses.create(
-                model="gpt-4.1",
+                model="gpt-4o",
                 input=[
                     {
                         "role": "system",
