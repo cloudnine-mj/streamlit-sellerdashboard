@@ -2385,18 +2385,39 @@ elif st.session_state.page == 'Pro':
         client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 
+        # def generate_title(prompt):
+        #     #response = client.chat.completions.create(
+        #     response = client.responses.create(
+        #         model='gpt-4.1',
+        #         messages=[
+        #             {'role': 'system', 'content': '너는 쇼핑 라이브 방송의 제목을 만들어주는 카피라이팅 전문가야. 아래의 제약조건 및 입력문을 토대로 최고의 라이브 방송 제목을 만들어줘.'},
+        #             {'role': 'user', 'content': prompt}
+        #         ],
+        #         temperature=0.8,
+        #         max_tokens=500
+        #     )
+        #     return response.choices[0].message.content.strip()
         def generate_title(prompt):
-            response = client.chat.completions.create(
-            #response = client.responses.create(
-                model='gpt-4.1',
-                messages=[
-                    {'role': 'system', 'content': '너는 쇼핑 라이브 방송의 제목을 만들어주는 카피라이팅 전문가야. 아래의 제약조건 및 입력문을 토대로 최고의 라이브 방송 제목을 만들어줘.'},
-                    {'role': 'user', 'content': prompt}
-                ],
-                temperature=0.8,
-                max_tokens=500
+            response = client.responses.create(
+                model="gpt-4.1",
+                input=[
+                    {
+                        "role": "system",
+                        "content": (
+                            "너는 쇼핑 라이브 방송의 제목을 만들어주는 "
+                            "카피라이팅 전문가야. "
+                            "아래의 제약조건 및 입력문을 토대로 "
+                            "창의적이고 다양한 표현을 사용해 "
+                            "최고의 라이브 방송 제목을 만들어줘."
+                        )
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ]
             )
-            return response.choices[0].message.content.strip()
+            return response.output_text.strip()
         if st.button('🚀 제목 추천 받기'):
             
             prompt = f'''
