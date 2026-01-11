@@ -2385,7 +2385,7 @@ elif st.session_state.page == 'Pro':
         client = OpenAI(api_key=st.secrets['OPENAI_API_KEY'])
         def generate_title(prompt):
             response = client.chat.completions.create(
-                model='gpt-4o',
+                model='gpt-4.1-mini',
                 messages=[
                     {'role': 'system', 'content': '너는 쇼핑 라이브 방송의 제목을 만들어주는 카피라이팅 전문가야. 아래의 제약조건 및 입력문을 토대로 최고의 라이브 방송 제목을 만들어줘.'},
                     {'role': 'user', 'content': prompt}
