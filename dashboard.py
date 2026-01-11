@@ -2384,7 +2384,6 @@ elif st.session_state.page == 'Pro':
         # 제목 생성 함수
         client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
-
         # def generate_title(prompt):
         #     #response = client.chat.completions.create(
         #     response = client.responses.create(
